@@ -3,7 +3,7 @@ const std = @import("std");
 const GameEntity = struct {
     allocator: std.mem.Allocator,
     name: []u8,
-    position: @Vector(3, f32), // SIMD enabled vector
+    position: @Vector(3, f32), // SIMD enabled Vector
 
     pub fn init(allocator: std.mem.Allocator, i: u64) !*GameEntity {
         // `try` means `if (err != null) return err;`
@@ -50,8 +50,11 @@ pub fn main() !void {
     }
 
     // Manual cleanup after program run
-    for (entities) |entity| {
-        std.debug.print("Destroying entity '{s}' (position: {e})\n", .{ entity.name, entity.position });
-        entity.destroy();
+    // Defer here is not needed, just for demonstration
+    defer {
+        for (entities) |entity| {
+            std.debug.print("Destroying entity '{s}' (position: {e})\n", .{ entity.name, entity.position });
+            entity.destroy();
+        }
     }
 }

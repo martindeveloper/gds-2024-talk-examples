@@ -50,4 +50,7 @@ pub fn build(b: *std.Build) void {
     // TODO(martin.pernica): Currently known issue, at least on macOS, that dylib paths will be hardcoded as absolute paths, this seems not happen on Windows
     // You need to hack the dylib paths, not sure how to force Zig build to not hardcode it
     // install_name_tool -change "/Users/martin/Projects/Flying-Rat/gds-2025-samples/src/zig/zig_odin_interop/libodin.dylib" "@rpath/libodin.dylib" zig-out/bin/zig_odin_interop
+    // Windows:
+    // List dependencies of executable use `dumpbin /DEPENDENTS zig_odin_interop.exe`
+    // List exported symbols use `dumpbin /EXPORTS odin.dll`
 }

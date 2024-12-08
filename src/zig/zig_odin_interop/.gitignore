@@ -1,1 +1,6 @@
-libodin.dylib
+*.dylib
+*.so
+*.a
+*.dll
+*.exp
+*.lib

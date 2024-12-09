@@ -76,7 +76,11 @@ pub fn build(b: *std.Build) void {
             },
             .macos => {
                 // On macOS there is .dSYM directory
-                const lib_dsym_install = b.addInstallBinDir(b.path(lib_out_filename ++ ".dSYM"), lib_out_filename ++ ".dSYM");
+                const lib_dsym_install = b.addInstallDirectory(.{
+                    .source_dir = b.path(lib_out_filename ++ ".dSYM"),
+                    .install_dir = .{ .prefix = {} },
+                    .install_subdir = "bin/" ++ lib_out_filename ++ ".dSYM",
+                });
                 install_step.dependOn(&lib_dsym_install.step);
             },
             else => {

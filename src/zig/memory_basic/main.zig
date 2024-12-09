@@ -11,7 +11,7 @@ const GameEntity = struct {
         // `errdefer` means if this function returns error in any point, call this function
         errdefer allocator.destroy(entity);
 
-        const name = try std.fmt.allocPrint(allocator, "Entitty {d}", .{i});
+        const name = try std.fmt.allocPrint(allocator, "Entitty {d}", .{i}); // Returns slice []u8(pointer, length)
         errdefer allocator.free(name);
 
         entity.* = .{ .allocator = allocator, .name = name, .position = .{ 0.0, 0.0, 0.0 } };
@@ -54,7 +54,7 @@ pub fn main() !void {
     defer {
         for (entities) |entity| {
             std.debug.print("Destroying entity '{s}' (position: {e})\n", .{ entity.name, entity.position });
-            entity.destroy();
+            entity.destroy(); // Same as `GameEntity.destroy(&entity)`
         }
     }
 }

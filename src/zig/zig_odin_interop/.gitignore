@@ -1,6 +1,8 @@
 *.dylib
+*.dSYM
 *.so
 *.a
 *.dll
 *.exp
 *.lib
+*.pdb

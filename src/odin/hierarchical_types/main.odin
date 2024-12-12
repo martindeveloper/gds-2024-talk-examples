@@ -26,6 +26,11 @@ EnemyNPC :: struct {
 	damage:    u32,
 }
 
+entity_debug_print :: proc(entity: Entity) {
+	fmt.printfln("Entity: %v", entity.name)
+	fmt.printfln("Entity Physics Channel: %v", entity.physics_channel)
+}
+
 main :: proc() {
 	enemy: EnemyNPC = EnemyNPC {
 		name            = "Goblin",
@@ -33,6 +38,9 @@ main :: proc() {
 		health          = 100,
 		damage          = 10,
 	}
+
+	// This is possible due subtype polymorphism using the `using` keyword
+	entity_debug_print(enemy)
 
 	// Print the enemy's information
 	fmt.printfln("Enemy: %v", enemy.npc.entity.name)

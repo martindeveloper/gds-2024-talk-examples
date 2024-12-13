@@ -18,7 +18,7 @@ Game_Entity_Error :: enum {
 
 game_entity_make :: proc(
 	name: string,
-	$health: u32,
+	$health: u32, // Dollar sign denotes compile time constant
 	allocator := context.allocator, // Unnecessary, but for demonstration purposes, see https://odin-lang.org/docs/overview/#implicit-context-system
 ) -> (
 	entity: ^Game_Entity = nil,

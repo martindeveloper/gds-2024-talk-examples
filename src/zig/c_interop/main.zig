@@ -4,6 +4,10 @@ const c = @cImport({
 });
 
 pub fn main() !void {
+    // This is unnecessary, for demonstration of comptime condition to check i64 size compared to int64_t (8 bytes)
+    // Generally these checks could be useful to make sure that (your custom) Zig types match the C types
+    comptime if (@sizeOf(i64) != 8) @panic("i64 size is not 8 bytes!");
+
     const a: i64 = 1;
     const b: i64 = 2;
 

@@ -1,6 +1,6 @@
+#pragma once
 #ifndef EXTERNAL_H
 #define EXTERNAL_H
-#pragma once
 
 #include <stdint.h>
 

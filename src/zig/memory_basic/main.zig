@@ -5,7 +5,9 @@ const GameEntity = struct {
     name: []u8,
     position: @Vector(3, f32), // SIMD enabled Vector
 
-    pub fn init(allocator: std.mem.Allocator, i: u64) !*GameEntity {
+    // create, destroy - mostly used for heap allocation
+    // init, deinit - mostly used for stack allocation
+    pub fn create(allocator: std.mem.Allocator, i: u64) !*GameEntity {
         // `try` means `if (err != null) return err;`
         const entity = try allocator.create(GameEntity);
         // `errdefer` means if this function returns error in any point, call this function
@@ -40,7 +42,7 @@ pub fn main() !void {
     defer allocator.free(entities); // Will be called after the main function
 
     for (0..entities_len) |i| {
-        var entity = try GameEntity.init(allocator, i);
+        var entity = try GameEntity.create(allocator, i);
         errdefer entity.destroy();
 
         const i_float: f32 = @floatFromInt(i);
